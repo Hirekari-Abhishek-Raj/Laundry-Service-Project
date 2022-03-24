@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.use(bodyParser());
 
-/* =========================== LOGIN ===============================*/
+/*  LOGIN */
 
 router.post(
   "/login",

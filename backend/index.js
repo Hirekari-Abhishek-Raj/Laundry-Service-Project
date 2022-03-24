@@ -6,7 +6,7 @@ SECRET = "RESTAPI";
 
 const app = express();
 
-/*  MONGOOSE CONNECTION =*/
+/*  MONGOOSE CONNECTION */
 let PORT = process.env.PORT || 4000;
 const url = `mongodb+srv://Admin:qwerty7@laundry-servicedb.iwqpz.mongodb.net/laundry-serviceDB?retryWrites=true&w=majority`;
 mongoose.connect(url).then(() => {
@@ -23,10 +23,9 @@ app.use(function (req, res, next) {
   next();
 });
 
-/*  ROUTES =*/
+/*  ROUTES */
 const loginRoutes = require("./Routes/login");
 const registerRoutes = require("./Routes/register");
-// const orderRoutes = require("./Routes/orders");
 const userRoutes = require("./Routes/user");
 
 /*AUTHORIZATION */
@@ -38,8 +37,8 @@ app.use("/users", (req, res, next) => {
       message: "token is missing",
     });
   }
+  // jwt keeps a record of the token
   jwt.verify(token, SECRET, function (err, decoded) {
-    // jwt keeps a record of the tokens
     if (err) {
       return res.status(401).json({
         status: "failed",
@@ -54,7 +53,6 @@ app.use("/users", (req, res, next) => {
 
 app.use("/", loginRoutes);
 app.use("/", registerRoutes);
-// app.use("/", orderRoutes);
 app.use("/", userRoutes);
 
 app.listen(PORT, () => {

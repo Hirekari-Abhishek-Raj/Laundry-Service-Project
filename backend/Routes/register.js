@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.use(bodyParser());
 
-/* =========================== REGISTER ===============================*/
+/*  REGISTER */
 
 router.post(
   "/register",
